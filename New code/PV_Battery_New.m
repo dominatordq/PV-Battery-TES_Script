@@ -160,46 +160,6 @@ for i=1:nStates
 
 for j=1:8760
 
-% %--Solar Time and Hour Angles
-% 
-% B = (n(j)-1)*(360/365);                                 %factor for solar time [deg]
-% E = 229.2*(0.000075 + 0.001868*cosd(B) - 0.032077*sind(B) - 0.014615*cosd(2*B) - 0.04089*sind(2*B));   %factor for solar time
-% tSolDiff = 4*(merid(i)-long(i)) + E;                    %difference between standard and solar time [min]
-% tSol = hour(j) + tSolDiff/60;                           %solar time [hrs]
-% if tSol > 24
-%     tSol = (tSol-24);                                   %correct solar time if needed
-% elseif tSol < 0
-%     tSol = 24 + tSol;
-% end
-% omegaA = 15*(tSol - 1 - 12);                            %start of hour angle [deg]
-% omegaB = 15*(tSol - 12);                                %end of hour angle [deg]
-% 
-% delta = 23.45 * sind(360*(284+n(j))/365);               %solar declination angle
-% omegaSet = acosd(-tand(lat(i))*tand(delta));            %sunset angle [deg]
-% omegaRise = -omegaSet;                                  %sunrise angle [deg]
-% 
-% if omegaA < omegaRise && omegaB >= omegaRise
-%     omegaA = omegaRise;                                 %set start hour angle to sunrise if hour includes sunrise
-% end
-% if omegaA <= omegaSet && omegaB > omegaSet
-%     omegaB = omegaSet;                                  %set end hour angle to sunset if hour angle includes sunset
-% end
-% 
-% %--Rb Factor
-% 
-% aRb = (sind(delta)*sind(lat(i))*cosd(beta(i)) - sind(delta)*cosd(lat(i))*sind(beta(i))*cosd(gamma)) * (omegaB-omegaA)*pi/180 ...
-% 	+ (cosd(delta)*cosd(lat(i))*cosd(beta(i)) + cosd(delta)*sind(lat(i))*sind(beta(i))*cosd(gamma)) * (sind(omegaB) - sind(omegaA)) ...
-% 	- (cosd(delta)*sind(beta(i))*sind(gamma)) * (cosd(omegaB)-cosd(omegaA));
-% 
-% bRb = (cosd(lat(i))*cosd(delta))*(sind(omegaB)-sind(omegaA)) + (sind(lat(i))*sind(delta))*(omegaB-omegaA)*pi/180;
-% Rb = aRb/bRb;                                           %ratio of beam radiation on tilted surface to horizontal surface
-% 
-% if Rb<0                                                 %correct Rb when necessary
-%     Rb = 0;
-% elseif Rb>50
-%     Rb = 0;
-% end
-
 It(j,i) = irradiancePV(i,j,I,Id,rhoG,beta,gamma,merid,lat,long,Gsc,n);  %call irradiancePV function
 
 end
