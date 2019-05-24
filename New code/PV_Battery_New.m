@@ -160,7 +160,11 @@ for i=1:nStates
 
 for j=1:8760
 
-It(j,i) = irradiancePV(i,j,I,Id,rhoG,beta,gamma,merid,lat,long,Gsc,n);  %call irradiancePV function
+[irr isTrue] = irradiancePV(i,j,I,Id,rhoG,beta,gamma,merid,lat,long,Gsc,n);  %call irradiancePV function
+It(j,i) = irr;
+if (isTrue == 1)    %if Ai > 1 || Rb > 50
+    It(j,1) = 0;
+end
 
 end
 end
