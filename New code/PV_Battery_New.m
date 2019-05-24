@@ -161,7 +161,7 @@ for i=1:nStates
 for j=1:8760
 
 [irr, isTrue] = irradiancePV(i,j,I,Id,rhoG,beta,gamma,merid,lat,long,Gsc,n);  %call irradiancePV function
-It(j,i) = irr;
+It(j,i) = irr;      %set irradiance at (j, i) to the irradiance calculated by the function
 if (isTrue == 1)    %if Ai > 1 || Rb > 50
     It(j,1) = 0;
 end
@@ -172,3 +172,31 @@ end
 disp('Completed calculating incident irradiance on tilted panels.')
 toc
 
+capStor = capStorRated*ones(1,50);
+
+for i=1:nStates
+for k=1:nEc
+    
+if k==replaceBatYr
+    capStor = capStorRated*ones(1,50);          %reset battery capacity when replaced
+end
+   
+charge = chargeMin;                             %initialize battery charge [kWh]
+chargeP = chargeMin;                            %initialize previous charge [kWh]
+cycleMax = chargeMin;                           %initialize max charge on cycle [kWh]
+cycleMin = chargeMin;                           %initialize min charge on cycle [kWh]
+chargeDir = 0;                                  %initialize charge direction: -1 for discharge, 0 for steady, +1 for charge
+
+for j=1:8760
+% call electrivityPV to update efficiency/electricity 
+[prodPV, prodPVTot, tempPV] = electricityPV(i,j,k,It,T,V,NOCT,areaPV,etaPV_rated,etaDust,etaDC,etaMPP,etaD,eProdPVTot,betaT,Tref);
+eProdPV(j,i) = prodPV;
+eProdPVTot(k,i) = prodPVTot;
+Tpv(j,i) = tempPV;
+        
+end
+end
+end
+
+disp('Completed simulating PV/battery system for 30 years')
+toc
