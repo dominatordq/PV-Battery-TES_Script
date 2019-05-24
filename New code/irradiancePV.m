@@ -1,4 +1,4 @@
-function [irradiance] = irradiancePV(i,j,I,Id,rhoG,beta,gamma,merid,lat,long,Gsc,n)
+function [irradiance, isTrue] = irradiancePV(i,j,I,Id,rhoG,beta,gamma,merid,lat,long,Gsc,n)
 %This function will process solar/weather data to determine irradiance on tilted PV panel.
 % Input: i = ith index (row)
 % Input: j = jth index (col)
@@ -12,8 +12,12 @@ function [irradiance] = irradiancePV(i,j,I,Id,rhoG,beta,gamma,merid,lat,long,Gsc
 % Input: long = longitude
 % Input: Gsc = solar constant [W/m2]
 % Input: n = day of year for each hour of year [day]
+%
+% Output: irradiance = irradiance on a tilted panel
+% Output: isTrue = 1 or 0 depending if Ai > 1 or Rb > 50
 
 hour = repmat((1:24).',365,1);                  %local time for each hour of year [hr]
+isTrue = 0;                                     %1 if Ai > 1 || Rb > 50
 
 %--Solar Time and Hour Angles
 
@@ -83,6 +87,7 @@ elseif omegaA > omegaSet
 end
 if Ai > 1 || Rb > 50
     irradiance = 0;
+    isTrue = 1;
 end
 
 end
