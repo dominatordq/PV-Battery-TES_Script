@@ -14,7 +14,7 @@
 %   TMY3 files must be named 1.csv ... 50.csv for each state (currently alphabetical)
 %   Corresponding load files must be named 1L.csv ... 51L.csv for each state
 
-%   Last updated 2019-05-23
+%   Last updated 2019-05-24
 
 clearvars
 clc
