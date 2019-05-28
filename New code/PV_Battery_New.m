@@ -188,11 +188,23 @@ cycleMin = chargeMin;                           %initialize min charge on cycle 
 chargeDir = 0;                                  %initialize charge direction: -1 for discharge, 0 for steady, +1 for charge
 
 for j=1:8760
-% call electrivityPV to update efficiency/electricity 
-[prodPV, prodPVTot, tempPV] = electricityPV(i,j,k,It,T,V,NOCT,areaPV,etaPV_rated,etaDust,etaDC,etaMPP,etaD,eProdPVTot,betaT,Tref);
+%call electrivityPV to update efficiency/electricity 
+[prodPV, prodPVTot, tempPV] = electricityPV(i,j,k,It,T,V,NOCT,areaPV,etaPV_rated,etaDust,etaDC,etaMPP,etaD,eProdPVTot,betaT,Tref); %call electricityPV
+%sets the output to its corresponding vectors
 eProdPV(j,i) = prodPV;
 eProdPVTot(k,i) = prodPVTot;
 Tpv(j,i) = tempPV;
+
+[sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,k,eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge 
+%sets the outputs of battery charge to their corresponding vectors
+eSysUt(k,i) = sysUt;
+eSysWa(k,i) = sysWa;
+eBatUse(k,i) = batUse;
+charge = currentCharge;
+chargeHist(j,i) = charge;                       %store charge in history variable
+
+
+
         
 end
 end
