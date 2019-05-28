@@ -195,20 +195,37 @@ eProdPV(j,i) = prodPV;
 eProdPVTot(k,i) = prodPVTot;
 Tpv(j,i) = tempPV;
 
-[sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,k,eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge 
-%sets the outputs of battery charge to their corresponding vectors
-eSysUt(k,i) = sysUt;
-eSysWa(k,i) = sysWa;
-eBatUse(k,i) = batUse;
-charge = currentCharge;
-chargeHist(j,i) = charge;                       %store charge in history variable
-
-
-
+% [sysUt, sysWa, currentCharge] = batteryCharge(i,j,k,eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge 
+% %sets the outputs of battery charge to their corresponding vectors
+% eSysUt(k,i) = sysUt;
+% eSysWa(k,i) = sysWa;
+% %eBatUse(k,i) = batUse;
+% charge = currentCharge;
+% chargeHist(j,i) = charge;                       %store charge in history variable
+[sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,k,eProdPV,eLoad,charge,chargeMin,chargeHist,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge  
+eSysUt(k,i) = eSysUt(k,i) + sysUt;
+eSysWa(k,i) = eSysWa(k,i) + sysWa;
+eBatUse(k,i) = eBatUse(k,i) + batUse;
+chargeHist(j,i) = currentCharge;
+%[eSysUt, eSysWa, eBatUse, currentCharge, chargeHist] = batteryCharge(i,j,k,eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge  
+%[eSysUt, eSysWa, batUse, currentCharge, chargeHist] = batteryCharge(i,k,eProdPV,eLoad,charge,chargeHist,chargeMin,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor)
         
 end
 end
 end
+
+% for i=1:nStates
+% for k=1:nEc
+%     [sysUt, sysWa, batUse, currentCharge, chargeHistOut] = batteryCharge(i,k,eProdPV,eLoad,charge,chargeMin,chargeHist,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge 
+%     eSysUt(k,i) = sysUt;
+%     eSysWa(k,i) = sysWa;
+%     eBatUse(k,i) = batUse;
+%     charge = currentCharge;
+%     
+% end
+%     chargeHist(:,i) = chargeHistOut;
+% end
+
 
 disp('Completed simulating PV/battery system for 30 years')
 toc
