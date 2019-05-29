@@ -1,4 +1,4 @@
-function [sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysU,eSysW,eBatU,capStor)
+function [sysUt, sysWa, batUse, currentCharge] = batteryCharge(eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysU,eSysW,eBatU,capStor)
 %This function will calculate updated charge states of battery systems based on excess PV electricity, 
 %charge states, technical parameters, and weather parameters.
 %   Input: i, j = ith, jth, indices
@@ -46,9 +46,9 @@ end
 if (eProdPV*etaI > eLoad)                     %if PV production is greater than load
 	eSysU = eLoad;             %system utilization increases by amount equal to load (used immediately)
     prodEx = eProdPV - eLoad/etaI;            %excess production
-    if (prodEx > capStor(i)-charge)                     %if excess production exceeds uncharged capacity
-	     eSysW = (prodEx - (capStor(i)-charge));        %excess production above capacity is wasted
-	     charge = capStor(i);                           %battery becomes fully charged
+    if (prodEx > capStor-charge)                     %if excess production exceeds uncharged capacity
+	     eSysW = (prodEx - (capStor-charge));        %excess production above capacity is wasted
+	     charge = capStor;                           %battery becomes fully charged
     else                                                %else excess production is less than or equal to uncharged capacity 
 	     charge = charge + prodEx;                      %battery charge increases by excess production
     end

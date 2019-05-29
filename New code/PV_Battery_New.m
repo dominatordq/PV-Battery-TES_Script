@@ -195,7 +195,7 @@ eProdPV(j,i) = prodPV;
 eProdPVTot(k,i) = prodPVTot;
 Tpv(j,i) = tempPV;
  
-[sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,eProdPV(j,i),eLoad(j,i),charge,chargeMin,etaI,etaStor,eSysUt(k,i),eSysWa(k,i),eBatUse(k,i),capStor); %call batteryCharge  
+[sysUt, sysWa, batUse, currentCharge] = batteryCharge(eProdPV(j,i),eLoad(j,i),charge,chargeMin,etaI,etaStor,eSysUt(k,i),eSysWa(k,i),eBatUse(k,i),capStor(i)); %call batteryCharge  
 eSysUt(k,i) = eSysUt(k,i) + sysUt;
 eSysWa(k,i) = eSysWa(k,i) + sysWa;
 eBatUse(k,i) = eBatUse(k,i) + batUse;
