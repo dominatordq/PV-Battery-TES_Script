@@ -1,6 +1,5 @@
-function [irradiance, isTrue] = irradiancePV(i,j,I,Id,rhoG,beta,gamma,merid,lat,long,Gsc,n)
+function [irradiance, isTrue] = irradiancePV(j,I,Id,rhoG,beta,gamma,merid,lat,long,Gsc,n)
 %This function will process solar/weather data to determine irradiance on tilted PV panel.
-% Input: i = ith index (row)
 % Input: j = jth index (col)
 % Input: I = global irradiance
 % Input: Id = diffuse horizontal irradiance

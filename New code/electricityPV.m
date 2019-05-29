@@ -1,7 +1,7 @@
-function [prodPV, prodPVTot, tempPV] = electricityPV(i,j,k,It,T,V,NOCT,areaPV,etaPV_rated,etaDust,etaDC,etaMPP,etaD,eProdPVTot,betaT,Tref)
+function [prodPV, prodPVTot, tempPV] = electricityPV(k,It,T,V,NOCT,areaPV,etaPV_rated,etaDust,etaDC,etaMPP,etaD,eProdPVTot,betaT,Tref)
 %This function will calculate electricity produced by PV panels for each timestep, accounting for temperature, irradiance, and degradation effects. 
 %Output will be total electricity produced for timestep
-% Input: i, j, k = ith, jth, and kth index in for loop
+% Input: k = kth index in for loop
 % Input: It = irradiance on a tilted panel
 % Input: T = temperature [C]
 % Input: V = wind speed [m/s]
