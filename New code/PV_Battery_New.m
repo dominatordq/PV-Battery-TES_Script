@@ -160,7 +160,7 @@ for i=1:nStates
 
 for j=1:8760
 
-[irr, isTrue] = irradiancePV(i,j,I,Id,rhoG,beta,gamma,merid,lat,long,Gsc,n);  %call irradiancePV function
+[irr, isTrue] = irradiancePV(i,j,I(j,i),Id(j,i),rhoG(j,i),beta(i),gamma,merid(i),lat(i),long(i),Gsc,n(j));  %call irradiancePV function
 It(j,i) = irr;      %set irradiance at (j, i) to the irradiance calculated by the function
 if (isTrue == 1)    %if Ai > 1 || Rb > 50
     It(j,1) = 0;
@@ -189,7 +189,7 @@ chargeDir = 0;                                  %initialize charge direction: -1
 
 for j=1:8760
 %call electrivityPV to update efficiency/electricity 
-[prodPV, prodPVTot, tempPV] = electricityPV(i,j,k,It,T,V,NOCT,areaPV,etaPV_rated,etaDust,etaDC,etaMPP,etaD,eProdPVTot,betaT,Tref); %call electricityPV
+[prodPV, prodPVTot, tempPV] = electricityPV(i,j,k,It(j,i),T(j,i),V(j,i),NOCT,areaPV,etaPV_rated,etaDust,etaDC,etaMPP,etaD,eProdPVTot(k,i),betaT,Tref); %call electricityPV
 %sets the output to its corresponding vectors
 eProdPV(j,i) = prodPV;
 eProdPVTot(k,i) = prodPVTot;
@@ -214,6 +214,8 @@ end
 capStorHist(k,i) = capStor(i);      %update storage capacity history
 end
 end
+
+
 
 disp('Completed simulating PV/battery system for 30 years')
 toc

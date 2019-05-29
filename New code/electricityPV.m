@@ -19,12 +19,12 @@ function [prodPV, prodPVTot, tempPV] = electricityPV(i,j,k,It,T,V,NOCT,areaPV,et
 % Output: prodPV = electricity produced by PV panels in hour [kWh]
 % Output: prodPVTot = total energy produced by panels for year [kWh]
 
-tempPV = T(j,i) + It(j,i)*((NOCT-20)/800)...          %Temperature of PV module [C]
-    *(1-etaPV_rated/0.9)*(9.5/(5.7+3.8*V(j,i)));
+tempPV = T + It*((NOCT-20)/800)...          %Temperature of PV module [C]
+    *(1-etaPV_rated/0.9)*(9.5/(5.7+3.8*V));
 etaT = 1 - betaT*(tempPV - Tref);                    %efficiency reduction due to PV temp
 etaPV = etaPV_rated*etaT*etaDust*etaDC*etaMPP*(1-(k-1)*etaD);   %PV efficiency
-prodPV = It(j,i)*etaPV*areaPV * (1/1000);         %electricity produced by PV panels in hour [kWh]
-prodPVTot = eProdPVTot(k,i) + prodPV;
+prodPV = It*etaPV*areaPV * (1/1000);         %electricity produced by PV panels in hour [kWh]
+prodPVTot = eProdPVTot + prodPV;
 
 end
 
