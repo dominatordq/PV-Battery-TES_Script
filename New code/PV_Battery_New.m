@@ -103,7 +103,6 @@ beta = NaN*ones(1,50);
 merid = NaN*ones(1,50);
 I = NaN*ones(8760,50);                          %global irradiance
 Id = NaN*ones(8760,50);                         %diffuse horizontal irradiance
-It = NaN*ones(8760,50);                         %irradiance on a tilted panel
 T = NaN*ones(8760,50);                          %temperature
 V = NaN*ones(8760,50);                          %velocity (wind speed)
 rhoG = NaN*ones(8760,50);                       %albedo
