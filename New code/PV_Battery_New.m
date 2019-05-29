@@ -14,7 +14,7 @@
 %   TMY3 files must be named 1.csv ... 50.csv for each state (currently alphabetical)
 %   Corresponding load files must be named 1L.csv ... 51L.csv for each state
 
-%   Last updated 2019-05-24
+%   Last updated 2019-05-29
 
 clearvars
 clc
@@ -194,22 +194,15 @@ for j=1:8760
 eProdPV(j,i) = prodPV;
 eProdPVTot(k,i) = prodPVTot;
 Tpv(j,i) = tempPV;
-
-% [sysUt, sysWa, currentCharge] = batteryCharge(i,j,k,eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge 
-% %sets the outputs of battery charge to their corresponding vectors
-% eSysUt(k,i) = sysUt;
-% eSysWa(k,i) = sysWa;
-% %eBatUse(k,i) = batUse;
-% charge = currentCharge;
-% chargeHist(j,i) = charge;                       %store charge in history variable
-[sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,k,eProdPV,eLoad,charge,chargeMin,chargeHist,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge  
+                      
+[sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,k,eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge  
 eSysUt(k,i) = eSysUt(k,i) + sysUt;
 eSysWa(k,i) = eSysWa(k,i) + sysWa;
 eBatUse(k,i) = eBatUse(k,i) + batUse;
-chargeHist(j,i) = currentCharge;
-%[eSysUt, eSysWa, eBatUse, currentCharge, chargeHist] = batteryCharge(i,j,k,eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge  
-%[eSysUt, eSysWa, batUse, currentCharge, chargeHist] = batteryCharge(i,k,eProdPV,eLoad,charge,chargeHist,chargeMin,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor)
-        
+charge = currentCharge;
+chargeHist(j,i) = currentCharge;    %store charge in history variable
+
+
 end
 end
 end
