@@ -203,7 +203,7 @@ charge = currentCharge;         %store charge output
 
 chargeHist(j,i) = charge;    %store charge in history variable
 
-[chargeDirNew, currentCharge, cycleMin, cycleMax, deltaCcyc, capStorOut] = batteryDischarge(chargeDir,charge,chargeP,chargeMin,cycleMin,cycleMax,capStor(i),capStorRated,deltaCcal); %call batteryDischarge
+[chargeDirNew, currentCharge, cycleMin, cycleMax, capStorOut] = batteryDischarge(chargeDir,charge,chargeP,chargeMin,cycleMin,cycleMax,capStor(i),capStorRated,deltaCcal); %call batteryDischarge
 %update the variables that are inputs for batteryCharge and batteryDischarge
 chargeDir = chargeDirNew;
 capStor(i) = capStorOut;

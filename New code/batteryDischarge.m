@@ -1,4 +1,4 @@
-function [chargeDirNew, currentCharge, cycleMin, cycleMax, deltaCcyc, capStorOut] = batteryDischarge(chargeDir,charge,chargeP,chargeMin,cycleMin,cycleMax,capStor,capStorRated,deltaCcal)
+function [chargeDirNew, currentCharge, cycleMin, cycleMax, capStorOut] = batteryDischarge(chargeDir,charge,chargeP,chargeMin,cycleMin,cycleMax,capStor,capStorRated,deltaCcal)
 %This function will calculate updated discharge states of battery systems based on excess PV electricity, 
 %charge states, technical parameters, and weather parameters.
 %   Input: chargeDir = charge direction
@@ -15,7 +15,6 @@ function [chargeDirNew, currentCharge, cycleMin, cycleMax, deltaCcyc, capStorOut
 %   Output: currentCharge = updated battery charge [kWh]
 %   Output: cycleMin = updated min charge on cycle [kWh]
 %   Output: cycleMax = updated max charge on cycle [kWh]
-%   Output: deltaCcyc = updated loss of capacity
 %   Output: capStorOut = updated storage capacity [kWh]
 
 if chargeDir == -1                                      %if battery was discharging
