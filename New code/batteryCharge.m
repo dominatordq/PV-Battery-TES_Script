@@ -1,7 +1,6 @@
-function [sysUt, sysWa, batUse, currentCharge] = batteryCharge(eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysU,eSysW,eBatU,capStor)
+function [sysUt, sysWa, batUse, currentCharge] = batteryCharge(eProdPV,eLoad,charge,chargeMin,etaI,etaStor,capStor)
 %This function will calculate updated charge states of battery systems based on excess PV electricity, 
 %charge states, technical parameters, and weather parameters.
-%   Input: i, j = ith, jth, indices
 %   Input: eProdPV = energy produced by PV panels [kWh]
 %   Input: eLoad = hourly load
 %   Input: charge = battery charge [kWh]
@@ -20,10 +19,6 @@ function [sysUt, sysWa, batUse, currentCharge] = batteryCharge(eProdPV,eLoad,cha
 %   Output: batUse = energy stored in batteries [kWh]
 %   Output: currentCharge = current battery charge [kWh]
 
-% nStates = 50; 
-% nEc = 30;
-% eSysUt(k,i) = 0;
-% eBatUse(k,i) = 0;
 eSysW = 0;      %initialize wasted energy just in case it never gets assigned
 eBatU = 0;      %initialize battery use just in case it never gets assigned
 
