@@ -194,15 +194,23 @@ for j=1:8760
 eProdPV(j,i) = prodPV;
 eProdPVTot(k,i) = prodPVTot;
 Tpv(j,i) = tempPV;
- 
-[sysUt, sysWa, batUse, currentCharge] = batteryCharge(eProdPV(j,i),eLoad(j,i),charge,chargeMin,etaI,etaStor,eSysUt(k,i),eSysWa(k,i),eBatUse(k,i),capStor(i)); %call batteryCharge  
+                 
+[sysUt, sysWa, batUse, currentCharge] = batteryCharge(eProdPV(j,i),eLoad(j,i),charge,chargeMin,etaI,etaStor,capStor(i)); %call batteryCharge  
 eSysUt(k,i) = eSysUt(k,i) + sysUt;      %add the sysUt output to the eSysUt array/matrix if there is a change
 eSysWa(k,i) = eSysWa(k,i) + sysWa;      %add the sysWa output to the eSysWa array/matrix if there is a change
 eBatUse(k,i) = eBatUse(k,i) + batUse;   %add the batUse output to the eBatUse array/matrix if there is a change
 charge = currentCharge;         %store charge output 
-chargeHist(j,i) = currentCharge;    %store charge in history variable
+
+chargeHist(j,i) = charge;    %store charge in history variable
+
+[chargeDirNew, currentCharge, cycleMin, cycleMax, deltaCcyc, capStorOut] = batteryDischarge(chargeDir,charge,chargeP,chargeMin,cycleMin,cycleMax,capStor(i),capStorRated,deltaCcal);
+chargeDir = chargeDirNew;
+capStor(i) = capStorOut;
+charge = currentCharge;
+chargeP = charge;
 
 end
+capStorHist(k,i) = capStor(i);
 end
 end
 
