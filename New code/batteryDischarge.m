@@ -10,6 +10,13 @@ function [chargeDirNew, currentCharge, cycleMin, cycleMax, deltaCcyc, capStorOut
 %   Input: capStor = storage capacity [kWh]
 %   Input: capStorRated = total initial storage capacity [kWh]
 %   Input: deltaCcal = hourly degradation due to calendric aging [kWh]
+% 
+%   Output: chargeDirNew = updated charge direction
+%   Output: currentCharge = updated battery charge [kWh]
+%   Output: cycleMin = updated min charge on cycle [kWh]
+%   Output: cycleMax = updated max charge on cycle [kWh]
+%   Output: deltaCcyc = updated loss of capacity
+%   Output: capStorOut = updated storage capacity [kWh]
 
 if chargeDir == -1                                      %if battery was discharging
     if charge-chargeP > 0 || charge-chargeP == 0        %and if battery is now steady or charging
