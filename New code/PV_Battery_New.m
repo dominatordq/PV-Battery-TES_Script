@@ -194,30 +194,18 @@ for j=1:8760
 eProdPV(j,i) = prodPV;
 eProdPVTot(k,i) = prodPVTot;
 Tpv(j,i) = tempPV;
-                      
-[sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,k,eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge  
+ 
+[sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,eProdPV(j,i),eLoad(j,i),charge,chargeMin,etaI,etaStor,eSysUt(k,i),eSysWa(k,i),eBatUse(k,i),capStor); %call batteryCharge  
 eSysUt(k,i) = eSysUt(k,i) + sysUt;
 eSysWa(k,i) = eSysWa(k,i) + sysWa;
 eBatUse(k,i) = eBatUse(k,i) + batUse;
 charge = currentCharge;
 chargeHist(j,i) = currentCharge;    %store charge in history variable
 
-
 end
 end
 end
 
-% for i=1:nStates
-% for k=1:nEc
-%     [sysUt, sysWa, batUse, currentCharge, chargeHistOut] = batteryCharge(i,k,eProdPV,eLoad,charge,chargeMin,chargeHist,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor); %call batteryCharge 
-%     eSysUt(k,i) = sysUt;
-%     eSysWa(k,i) = sysWa;
-%     eBatUse(k,i) = batUse;
-%     charge = currentCharge;
-%     
-% end
-%     chargeHist(:,i) = chargeHistOut;
-% end
 
 
 disp('Completed simulating PV/battery system for 30 years')

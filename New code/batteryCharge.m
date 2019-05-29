@@ -1,7 +1,7 @@
-function [sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,k,eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysUt,eSysWa,eBatUse,capStor)
+function [sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,eProdPV,eLoad,charge,chargeMin,etaI,etaStor,eSysU,eSysW,eBatU,capStor)
 %This function will calculate updated charge states of battery systems based on excess PV electricity, 
 %charge states, technical parameters, and weather parameters.
-%   Input: i, j, k = ith, jth, and kth indices
+%   Input: i, j = ith, jth, indices
 %   Input: eProdPV = energy produced by PV panels [kWh]
 %   Input: eLoad = hourly load
 %   Input: charge = battery charge [kWh]
@@ -22,37 +22,42 @@ function [sysUt, sysWa, batUse, currentCharge] = batteryCharge(i,j,k,eProdPV,eLo
 
 % nStates = 50; 
 % nEc = 30;
-if (eProdPV(j,i)*etaI <= eLoad(j,i))                    %if PV production is less than or equal to load
-	eSysUt(k,i) = eSysUt(k,i) + eProdPV(j,i)*etaI;      %all PV production adds to total utilization
-	loadEx = eLoad(j,i) - eProdPV(j,i)*etaI;            %excess load
+% eSysUt(k,i) = 0;
+% eBatUse(k,i) = 0;
+eSysW = 0;      %initialize wasted energy just in case it never gets assigned
+eBatU = 0;      %initialize battery use just in case it never gets assigned
+
+if (eProdPV*etaI <= eLoad)                    %if PV production is less than or equal to load
+    eSysU = eProdPV*etaI;      %all PV production adds to total utilization
+    loadEx = eLoad - eProdPV*etaI;            %excess load
     if (charge > chargeMin)                             %if battery is not at min charge
         if (loadEx >= (charge-chargeMin)*etaI*etaStor)  %and if excess load exceeds or is equal to available charge
-	          eSysUt(k,i) = eSysUt(k,i) + (charge-chargeMin)*etaStor*etaI;      %avail. battery charge adds to total utilization
-	          eBatUse(k,i) = eBatUse(k,i) + (charge-chargeMin)*etaStor*etaI;    %avail. battery charge adds to that used from battery
-	          charge = chargeMin;                       %avail. battery charge goes to 0
+              eSysU = eSysU +(charge-chargeMin)*etaStor*etaI;      %avail. battery charge adds to total utilization
+	          eBatU = (charge-chargeMin)*etaStor*etaI;  %avail. battery charge adds to that used from battery
+              charge = chargeMin;                       %avail. battery charge goes to 0
          else                                           %else excess load is less than available charge
-	          eSysUt(k,i) = eSysUt(k,i) + loadEx;       %excess load adds to total utilization
-	          eBatUse(k,i) = eBatUse(k,i) + loadEx/(etaStor*etaI);     %excess load adds to that used from battery	
+              eSysU = eSysU + loadEx;       %excess load adds to total utilization
+	          eBatU = loadEx/(etaStor*etaI);     %excess load adds to that used from battery	
 	          charge = charge - loadEx/(etaStor*etaI);  %charge decreases by amount equal to excess load
          end
     end
 end
 
-if (eProdPV(j,i)*etaI > eLoad(j,i))                     %if PV production is greater than load
-	eSysUt(k,i) = eSysUt(k,i) + eLoad(j,i);             %system utilization increases by amount equal to load (used immediately)
-	prodEx = eProdPV(j,i) - eLoad(j,i)/etaI;            %excess production
+if (eProdPV*etaI > eLoad)                     %if PV production is greater than load
+	eSysU = eLoad;             %system utilization increases by amount equal to load (used immediately)
+    prodEx = eProdPV - eLoad/etaI;            %excess production
     if (prodEx > capStor(i)-charge)                     %if excess production exceeds uncharged capacity
-	     eSysWa(k,i) = eSysWa(k,i) + (prodEx - (capStor(i)-charge));     %excess production above capacity is wasted
+	     eSysW = (prodEx - (capStor(i)-charge));        %excess production above capacity is wasted
 	     charge = capStor(i);                           %battery becomes fully charged
     else                                                %else excess production is less than or equal to uncharged capacity 
 	     charge = charge + prodEx;                      %battery charge increases by excess production
     end
 end
 
-sysUt = eSysUt(k,i);
-sysWa = eSysWa(k,i);
-batUse = eBatUse(k,i);
-
+sysUt = eSysU;
+sysWa = eSysW;
+batUse = eBatU;
 currentCharge = charge;
+
 
 end
