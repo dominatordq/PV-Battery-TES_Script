@@ -155,8 +155,7 @@ It = NaN*ones(8760,50);                         %initialize irradiance on tilted
 Tpv = NaN*ones(8760,60);                        %initialize temperature of PV module [C]
 chargeHist = NaN*ones(8760,50);                 %initialize battery charge history [kWh]
 
-
-[It] = irradiancePV(I,Id,It,rhoG,beta,gamma,merid,lat,long,Gsc,n,nStates);
+[It] = irradiancePV(I,Id,It,rhoG,beta,gamma,merid,lat,long,Gsc,n,nStates);  %call irradiancePV
 
 disp('Completed calculating incident irradiance on tilted panels.')
 toc
@@ -193,18 +192,17 @@ charge = currentCharge;         %store charge output
 chargeHist(j,i) = charge;    %store charge in history variable
 
 [chargeDirNew, currentCharge, cycleMin, cycleMax, capStorOut] = batteryDischarge(chargeDir,charge,chargeP,chargeMin,cycleMin,cycleMax,capStor(i),capStorRated,deltaCcal); %call batteryDischarge
-%update the variables that are inputs for batteryCharge and batteryDischarge
-chargeDir = chargeDirNew;
-capStor(i) = capStorOut;
-charge = currentCharge;
-chargeP = charge;
+chargeDir = chargeDirNew;   %update charge direction
+capStor(i) = capStorOut;    %update capacity storage array
+charge = currentCharge;     %update charge
+chargeP = charge;           %update previous charge
 
 end
 capStorHist(k,i) = capStor(i);      %update storage capacity history
 end
 end
 
-
+[SCR, SSR, BUR, SCRtot, SSRtot, BURtot] = techAnalysis(eSysUt,eBatUse,eProdPVTot,eLoad,nomCapBat,nEc);  %call techAnalysis
 
 disp('Completed simulating PV/battery system for 30 years')
 toc
