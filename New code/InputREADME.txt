@@ -38,6 +38,8 @@ etaDust: efficiency reduction due to dust
 
 etaDC: efficiency reduction due to DC losses
 
+etaD: degradation ratio
+
 etaI: inverter efficiency
 
 costI: inverter cost [$/kW]
