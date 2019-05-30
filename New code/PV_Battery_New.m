@@ -207,3 +207,7 @@ end
 disp('Completed simulating PV/battery system for 30 years')
 toc
 
+[LCOEsys, COEsys, LCCelecAvoid, LCOEgrid, LCOEcomp, LCOEpv, LCOEbat, Pbd] = econAnalysis(nEc,invest,downPay,ITC,m,tBar,d,mS,r,costIreplace,capPV,replaceIyr,costBatreplace,replaceBatYr,nomCapBat,costStorInstReplace,costPVTot,eSysUt,eProdPVTot,pElec); %call econAnalysis
+
+disp('Completed financial analysis')
+toc
