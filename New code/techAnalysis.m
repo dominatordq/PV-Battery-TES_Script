@@ -1,5 +1,5 @@
 function [SCR, SSR, BUR, SCRtot, SSRtot, BURtot] = techAnalysis(eSysUt,eBatUse,eProdPVTot,eLoad,nomCapBat,nEc)
-%Technical figures of merit (self-consumption ratio, battery utilization ratio, etc.) 
+%Calculation of technical figures of merit (self-consumption ratio, battery utilization ratio, etc.) 
 %   Input: eSysUt = utilized energy produced by system [kWh]
 %   Input: eBatUse = energy stored in batteries [kWh]
 %   Input: eProdPVTot = total energy produced by PV panels [kWh]
