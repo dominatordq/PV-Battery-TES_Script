@@ -178,7 +178,7 @@ chargeDir = 0;                                  %initialize charge direction: -1
 for j=1:8760
 %call electrivityPV to update efficiency/electricity 
 [prodPV, prodPVTot, tempPV] = electricityPV(k,It(j,i),T(j,i),V(j,i),NOCT,areaPV,etaPV_rated,etaDust,etaDC,etaMPP,etaD,eProdPVTot(k,i),betaT,Tref); %call electricityPV
-%sets the output to its corresponding vectors
+%set the outputs to their corresponding vectors
 eProdPV(j,i) = prodPV;
 eProdPVTot(k,i) = prodPVTot;
 Tpv(j,i) = tempPV;
@@ -198,7 +198,7 @@ charge = currentCharge;     %update charge
 chargeP = charge;           %update previous charge
 
 end
-capStorHist(k,i) = capStor(i);      %update storage capacity history
+capStorHist(k,i) = capStor(i);  %update storage capacity history
 end
 end
 
@@ -206,3 +206,4 @@ end
 
 disp('Completed simulating PV/battery system for 30 years')
 toc
+
