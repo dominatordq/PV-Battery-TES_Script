@@ -4,7 +4,7 @@ function [It] = irradiancePV(I,Id,It,rhoG,beta,gamma,merid,lat,long,Gsc,n,nState
 %   Input: Id = diffuse horizontal irradiance
 %   Input: rhoG = albedo
 %   Input: beta = tilt angle
-%   Input: gamma
+%   Input: gamma = surface azimuth angle [deg]
 %   Input: merid = meridian
 %   Input: lat = latitude
 %   Input: long = longitude
