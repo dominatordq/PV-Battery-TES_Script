@@ -20,14 +20,13 @@ costPV: average cost of PV module without installation [$/kW]
 
 capPV: installation capacity [kW]
 
-areaPV: area of installed panels [m^2] - based on 1 kW/m^2 
-	   nominal irradiance (capPV / etaPV_rated)
+areaPV: area of installed panels [m^2] - based on 1 kW/m^2 nominal irradiance (capPV / etaPV_rated)
 
 Gsc: solar constant [W/m^2]
 
 gamma: surface azimuth angle [deg]
 
-betaT: coefficient for PV performance degradation with temp 		 [1/C]
+betaT: coefficient for PV performance degradation with temp [1/C]
 
 NOCT: parameter for calculating PV temp [C]
 
@@ -55,7 +54,7 @@ costInstall: installation cost ((100+350+350+700) * capPV) [$]
 
 costPermit: permitting cost (100 * capPV) [$]
 
-costPVTot: total cost of PV installation (costPV*capPV + 				costITot + costBOS + costInstall + costPermit)
+costPVTot: total cost of PV installation (costPV*capPV + costITot + costBOS + costInstall + costPermit)
 
 costPVinstpW: installed cost of PV (costPVTot/capPV/1000) [$]
 
@@ -68,9 +67,9 @@ dod: allowed depth of discharge
 
 etaStor: roundtrip storage efficiency
 
-capStorRated: total initial storage capacity (nomCapBat*dod) 			   [kWh]
+capStorRated: total initial storage capacity (nomCapBat*dod) [kWh]
 
-deltaCcal: hourly degradation due to calendric aging (0.2 * 			capStorRated / * (15*365*24)) [kWh]
+deltaCcal: hourly degradation due to calendric aging (0.2 * capStorRated / * (15*365*24)) [kWh]
 
 costBat: battery pack cost [$/kWh]
 
