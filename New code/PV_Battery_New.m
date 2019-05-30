@@ -155,18 +155,8 @@ It = NaN*ones(8760,50);                         %initialize irradiance on tilted
 Tpv = NaN*ones(8760,60);                        %initialize temperature of PV module [C]
 chargeHist = NaN*ones(8760,50);                 %initialize battery charge history [kWh]
 
-for i=1:nStates
 
-for j=1:8760
-
-[irr, isTrue] = irradiancePV(j,I(j,i),Id(j,i),rhoG(j,i),beta(i),gamma,merid(i),lat(i),long(i),Gsc,n(j));  %call irradiancePV function
-It(j,i) = irr;      %set irradiance at (j, i) to the irradiance calculated by the function
-if (isTrue == 1)    %if Ai > 1 || Rb > 50
-    It(j,1) = 0;
-end
-
-end
-end
+[It] = irradiancePV(I,Id,It,rhoG,beta,gamma,merid,lat,long,Gsc,n,nStates);
 
 disp('Completed calculating incident irradiance on tilted panels.')
 toc
