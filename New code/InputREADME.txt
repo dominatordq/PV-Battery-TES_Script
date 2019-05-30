@@ -101,7 +101,3 @@ d: discount rate
 tBar: effective income tax rate
 
 r: inflation rate
-
-invest: total investment (costStorTot + costPVTot) [$]
-
-downPay: down payment (invest * dp) [$]
