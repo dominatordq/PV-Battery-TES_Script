@@ -14,52 +14,54 @@
 %   TMY3 files must be named 1.csv ... 50.csv for each state (currently alphabetical)
 %   Corresponding load files must be named 1L.csv ... 50L.csv for each state
 
-%   Last updated 2019-05-29
+%   Last updated 2019-05-30
 
 clearvars
 clc
 tic
 
-nStates = 50;                           %number of states to run model for
-nStart = 1;                             %state to begin with (numeric order based on file names)
+inputTable = xlsread('Inputs.xlsx');    %read in excel file with user inputs
+
+nStates = inputTable(1);                %number of states to run model for
+nStart = inputTable(2);                 %state to begin with (numeric order based on file names)
 
 %-----PV Parameters-----
 
-etaPV_rated = 0.1534;                   %nameplate efficiency
-costPV = 500;                           %avg cost of PV module w/o installation [$/kW]
-capPV = 5;                              %installation capacity [kW]
-areaPV = capPV / etaPV_rated;           %area of installed panels [m2] - based on 1 kW/m2 nominal irradiance
-Gsc = 1367;                             %solar constant [W/m2]
-gamma = 0;                              %surface azimuth angle [deg]
-betaT = 0.00457;                        %coefficient for PV performance degradation with temp [1/C]
-NOCT = 46.6;                            %parameter for calculating PV temp [C]
-Tref = 25;                              %reference temperature for PV module [C]
-etaMPP = 0.95;                          %maximum power point tracker efficiency
-etaDust = 0.98;                         %efficiency reduction due to dust
-etaDC = 0.98;                           %efficiency reduction due to DC losses
-etaD = 0.008;                           %degradation ratio
-etaI = 0.956;                           %inverter efficiency
-costI = 160;                            %inverter cost [$/kW]
-costIreplace = 120;                     %inverter replacement cost [$/kW]
-replaceIyr = 15;                        %year to replace inverter
-costITot = (costI * capPV);             %total inverter cost
-costBOS = 500 * capPV;                  %balance of systems cost [$]
-costInstall = (100+350+350+700)*capPV;  %installation cost [$]
-costPermit = 100*capPV;                 %permitting cost [$]
-costPVTot = costPV*capPV + costITot + costBOS + costInstall + costPermit;    %total cost of PV installation
-costPVinstpW = costPVTot/capPV/1000;    %installed cost of PV [$/W]
+etaPV_rated = inputTable(3);            %nameplate efficiency
+costPV = inputTable(4);                 %avg cost of PV module w/o installation [$/kW]
+capPV = inputTable(5);                  %installation capacity [kW]
+areaPV = inputTable(6);                 %area of installed panels [m2] - based on 1 kW/m2 nominal irradiance
+Gsc = inputTable(7);                    %solar constant [W/m2]
+gamma = inputTable(8);                  %surface azimuth angle [deg]
+betaT = inputTable(9);                  %coefficient for PV performance degradation with temp [1/C]
+NOCT = inputTable(10);                  %parameter for calculating PV temp [C]
+Tref = inputTable(11);                  %reference temperature for PV module [C]
+etaMPP = inputTable(12);                %maximum power point tracker efficiency
+etaDust = inputTable(13);               %efficiency reduction due to dust
+etaDC = inputTable(14);                 %efficiency reduction due to DC losses
+etaD = inputTable(15);                  %degradation ratio
+etaI = inputTable(16);                  %inverter efficiency
+costI = inputTable(17);                 %inverter cost [$/kW]
+costIreplace = inputTable(18);          %inverter replacement cost [$/kW]
+replaceIyr = inputTable(19);            %year to replace inverter
+costITot = inputTable(20);              %total inverter cost
+costBOS = inputTable(21);               %balance of systems cost [$]
+costInstall = inputTable(22);           %installation cost [$]
+costPermit = inputTable(23);            %permitting cost [$]
+costPVTot = inputTable(24);             %total cost of PV installation
+costPVinstpW = inputTable(25);          %installed cost of PV [$/W]
 
 %-----Storage Parameters-----
 
-nomCapBat = 7;                          %nominal capacity of battery storage [kWh]
-dod = 6.75/7;                           %allowed depth of discharge
-etaStor = 0.90;                         %roundtrip storage efficiency
-capStorRated = nomCapBat*dod;           %total initial storage capacity [kWh]
-deltaCcal = 0.2*capStorRated/(15*365*24);    %hourly degradation due to calendric aging [kWh]
-costBat = 392.86;                       %battery pack cost [$/kWh]
-costBatreplace = costBat/2;             %cost to replace battery [$/kWh]
-replaceBatYr = 15;                      %year in which to replace batteries
-chargeMin = 0;                          %minimum storage charge (note that unallowed depth of...
+nomCapBat = inputTable(26);                          %nominal capacity of battery storage [kWh]
+dod = inputTable(27);                   %allowed depth of discharge
+etaStor = inputTable(28);               %roundtrip storage efficiency
+capStorRated = inputTable(29);          %total initial storage capacity [kWh]
+deltaCcal = inputTable(30);             %hourly degradation due to calendric aging [kWh]
+costBat = inputTable(31);               %battery pack cost [$/kWh]
+costBatreplace = inputTable(32);        %cost to replace battery [$/kWh]
+replaceBatYr = inputTable(33);          %year in which to replace batteries
+chargeMin = inputTable(34);             %minimum storage charge (note that unallowed depth of...
                                             %discharge has been removed from total capacity) [kWh]
                                             
 if nomCapBat > 0
@@ -73,15 +75,15 @@ costStorTot = costBat*nomCapBat + costStorInst;   %total installed cost [$]
 
 %-----Economic Parameters-----
 
-nEc = 30;                               %period for economic analysis [yr]
-m = 0.04;                               %loan interest rate
-ITC = 0.3;                              %investment tax credit rate
-dp = 0.2;                               %down payment ratio
-tProp = 0.0;                            %property tax rate
-mS = 0.01;                              %ratio insurance and maint. costs to investment
-d = 0.06;                               %discount rate
-tBar = 0.25;                            %effective income tax rate
-r = 0.02;                               %inflation rate
+nEc = inputTable(35);                   %period for economic analysis [yr]
+m = inputTable(36);                     %loan interest rate
+ITC = inputTable(37);                   %investment tax credit rate
+dp = inputTable(38);                    %down payment ratio
+tProp = inputTable(39);                 %property tax rate
+mS = inputTable(40);                    %ratio insurance and maint. costs to investment
+d = inputTable(41);                     %discount rate
+tBar = inputTable(42);                  %effective income tax rate
+r = inputTable(43);                     %inflation rate
                                             
 invest = (costStorTot+costPVTot);       %total investment [$]
 downPay = invest*dp;                    %down payment [$]
