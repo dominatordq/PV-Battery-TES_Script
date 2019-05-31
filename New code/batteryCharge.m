@@ -54,5 +54,4 @@ sysWa = eSysW;
 batUse = eBatU;
 currentCharge = charge;
 
-
 end
