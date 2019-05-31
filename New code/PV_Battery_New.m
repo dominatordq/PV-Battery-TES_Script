@@ -112,7 +112,7 @@ eLoad = NaN*ones(8760,50);                      %hourly load
 
 for i=1:nStates
     ii = i-1+nStart;                            %shifted index per starting state
-    file = strcat(num2str(ii),'.csv');          %file name
+    file = strcat(num2str(ii),'.CSV');          %file name
     file = strcat('TMY3 Data/',file);           %adding folder name to point to right folder
     header = csvread(file,0,3,[0 3 0 5]);       %read header from csv file
     TZ(i) = header(1);                          %time zone
