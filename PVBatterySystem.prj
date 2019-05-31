@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="1853934376" file="U:\NREL\PVTesBattery\PVBatterySystem.prj" location="U:\NREL\PVTesBattery" name="PVBatterySystem" preferred-package-location="U:\NREL\PVTesBattery\PVBatterySystem\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="3982540159" file="U:\NREL\PVTesBattery\PVBatterySystem.prj" location="U:\NREL\PVTesBattery" name="PVBatterySystem" preferred-package-location="U:\NREL\PVTesBattery\PVBatterySystem\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>PVBatterySystem</param.appname>
     <param.icon />
     <param.icons />
@@ -77,7 +77,9 @@
       <file>${PROJECT_ROOT}\New code\PV_Battery_New.m</file>
     </fileset.main>
     <fileset.resources>
+      <file>${PROJECT_ROOT}\New code\batteryCharge.m</file>
       <file>${PROJECT_ROOT}\New code\elecPrices.csv</file>
+      <file>${PROJECT_ROOT}\New code\Inputs.xlsx</file>
       <file>${PROJECT_ROOT}\New code\Load Data</file>
       <file>${PROJECT_ROOT}\New code\PV_Battery_New.m</file>
       <file>${PROJECT_ROOT}\New code\TMY3 Data</file>
@@ -87,11 +89,9 @@
       <file>${PROJECT_ROOT}\New code\Inputs.xlsx</file>
     </fileset.package>
     <fileset.depfun>
-      <file>${PROJECT_ROOT}\New code\batteryCharge.m</file>
       <file>${PROJECT_ROOT}\New code\batteryDischarge.m</file>
       <file>${PROJECT_ROOT}\New code\econAnalysis.m</file>
       <file>${PROJECT_ROOT}\New code\electricityPV.m</file>
-      <file>${PROJECT_ROOT}\New code\Inputs.xlsx</file>
       <file>${PROJECT_ROOT}\New code\irradiancePV.m</file>
       <file>${PROJECT_ROOT}\New code\PWF.m</file>
       <file>${PROJECT_ROOT}\New code\techAnalysis.m</file>
