@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="698906576" file="U:\NREL\PVTesBattery\PVBatterySystem.prj" location="U:\NREL\PVTesBattery" name="PVBatterySystem" preferred-package-location="U:\NREL\PVTesBattery\PVBatterySystem\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="1853934376" file="U:\NREL\PVTesBattery\PVBatterySystem.prj" location="U:\NREL\PVTesBattery" name="PVBatterySystem" preferred-package-location="U:\NREL\PVTesBattery\PVBatterySystem\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>PVBatterySystem</param.appname>
     <param.icon />
     <param.icons />
@@ -8,7 +8,7 @@
     <param.email>dquintana@mymail.mines.edu</param.email>
     <param.company>NREL</param.company>
     <param.summary>This model simulates residential PV/Battery systems over 30 years and calculates electricity consumption, production, cost, etc.</param.summary>
-    <param.description>This program takes in user input, which can be editted in Inputs.xlsx, and calculates electricity consumption and production, its cost, irradiance, etc.</param.description>
+    <param.description>This program takes in user input and calculates electricity consumption and production, its cost, irradiance, etc.</param.description>
     <param.screenshot />
     <param.guid />
     <param.installpath.string>\NREL\PVBatterySystem\</param.installpath.string>
@@ -31,8 +31,8 @@
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
     <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
     <param.windows.command.prompt>false</param.windows.command.prompt>
-    <param.create.log>false</param.create.log>
-    <param.log.file />
+    <param.create.log>true</param.create.log>
+    <param.log.file>output.txt</param.log.file>
     <param.native.matlab>false</param.native.matlab>
     <param.checkbox>false</param.checkbox>
     <param.example />
@@ -41,7 +41,9 @@
 	 
  Input Arguments 
 	 -?  print help on how to use the application 
-	 input arguments</param.help.text>
+	 input arguments 
+ Description 
+ 	 This program takes in user input and calculates electricity consumption and production, its cost, irradiance, etc.</param.help.text>
     <unset>
       <param.icon />
       <param.icons />
@@ -67,8 +69,6 @@
       <param.web.mcr.name />
       <param.package.mcr.name />
       <param.no.mcr.name />
-      <param.create.log />
-      <param.log.file />
       <param.native.matlab />
       <param.checkbox />
       <param.example />
@@ -82,7 +82,10 @@
       <file>${PROJECT_ROOT}\New code\PV_Battery_New.m</file>
       <file>${PROJECT_ROOT}\New code\TMY3 Data</file>
     </fileset.resources>
-    <fileset.package />
+    <fileset.package>
+      <file>${PROJECT_ROOT}\New code\InputREADME.txt</file>
+      <file>${PROJECT_ROOT}\New code\Inputs.xlsx</file>
+    </fileset.package>
     <fileset.depfun>
       <file>${PROJECT_ROOT}\New code\batteryCharge.m</file>
       <file>${PROJECT_ROOT}\New code\batteryDischarge.m</file>
