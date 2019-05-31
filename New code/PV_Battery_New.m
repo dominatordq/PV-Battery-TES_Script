@@ -14,13 +14,22 @@
 %   TMY3 files must be named 1.csv ... 50.csv for each state (currently alphabetical)
 %   Corresponding load files must be named 1L.csv ... 50L.csv for each state
 
-%   Last updated 2019-05-30
+%   Last updated 2019-05-31
 
 clearvars
 clc
+
+filename = '';
+if (isempty(filename))
+    prompt = 'Enter the name of your input file (ex: Inputs.xlsx): ';   %this if statement prevents program from looping
+end
+
+
+filename = input(prompt,'s');               %save input into a variable
+inputTable = xlsread(num2str(filename));    %read in excel file with user inputs
+
 tic
 
-inputTable = xlsread('Inputs.xlsx');    %read in excel file with user inputs
 
 nStates = inputTable(1);                %number of states to run model for
 nStart = inputTable(2);                 %state to begin with (numeric order based on file names)
@@ -53,7 +62,7 @@ costPVinstpW = inputTable(25);          %installed cost of PV [$/W]
 
 %-----Storage Parameters-----
 
-nomCapBat = inputTable(26);                          %nominal capacity of battery storage [kWh]
+nomCapBat = inputTable(26);             %nominal capacity of battery storage [kWh]
 dod = inputTable(27);                   %allowed depth of discharge
 etaStor = inputTable(28);               %roundtrip storage efficiency
 capStorRated = inputTable(29);          %total initial storage capacity [kWh]
@@ -62,7 +71,7 @@ costBat = inputTable(31);               %battery pack cost [$/kWh]
 costBatreplace = inputTable(32);        %cost to replace battery [$/kWh]
 replaceBatYr = inputTable(33);          %year in which to replace batteries
 chargeMin = inputTable(34);             %minimum storage charge (note that unallowed depth of...
-                                            %discharge has been removed from total capacity) [kWh]
+                                         %discharge has been removed from total capacity) [kWh]
                                             
 if nomCapBat > 0
     costStorInst = 1700;                %installation and BOS cost of batteries [$]
