@@ -240,7 +240,6 @@ toc
 
 capStor = capStorRated*ones(1,50);
 
-% for loops for #4. on the main script %
 for i=1:nStates
 for k=1:nEc
 
