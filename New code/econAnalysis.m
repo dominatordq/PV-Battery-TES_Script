@@ -23,7 +23,7 @@ function [LCOEsys, COEsys, LCCelecAvoid, LCOEgrid, LCOEcomp, LCOEpv, LCOEbat, Pb
 %
 %   Output: LCOEsys = LCOE from system
 %   Output: COEsys = cost of electricity from system (non-discounted)
-%   Output: LCCeleAvoid = life-cycle avoided cost of electricity [$]
+%   Output: LCCelecAvoid = life-cycle avoided cost of electricity [$]
 %   Output: LCOEgrid = LCOE from grid
 %   Output: LCOEcomp = LCOE comparison
 %   Output: LCOEpv = production LCOE
