@@ -24,12 +24,10 @@ if (isempty(filename))
     prompt = 'Enter the name of your input file (ex: Inputs.xlsx): ';   %this if statement prevents program from looping
 end
 
-
 filename = input(prompt,'s');               %save input into a variable
 inputTable = xlsread(num2str(filename));    %read in excel file with user inputs
 
 tic
-
 
 nStates = inputTable(1);                %number of states to run model for
 nStart = inputTable(2);                 %state to begin with (numeric order based on file names)
