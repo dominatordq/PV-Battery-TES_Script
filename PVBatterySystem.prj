@@ -1,9 +1,9 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="635450643" file="U:\NREL\PVTesBattery\PVBatterySystem.prj" location="U:\NREL\PVTesBattery" name="PVBatterySystem" preferred-package-location="U:\NREL\PVTesBattery\PVBatterySystem\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="83495726" file="U:\NREL\PVTesBattery\PVBatterySystem.prj" location="U:\NREL\PVTesBattery" name="PVBatterySystem" preferred-package-location="U:\NREL\PVTesBattery\PVBatterySystem\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>PVBatterySystem</param.appname>
     <param.icon />
     <param.icons />
-    <param.version>1.0</param.version>
+    <param.version>1.1</param.version>
     <param.authnamewatermark>Dominic Quintana</param.authnamewatermark>
     <param.email>dquintana@mymail.mines.edu</param.email>
     <param.company>NREL</param.company>
@@ -11,8 +11,8 @@
     <param.description>This program takes in user input and calculates electricity consumption and production, its cost, irradiance, etc.</param.description>
     <param.screenshot />
     <param.guid />
-    <param.installpath.string>\NREL\PVBatterySystem\</param.installpath.string>
-    <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
+    <param.installpath.string>NREL\PVBatterySystem\</param.installpath.string>
+    <param.installpath.combo>option.installpath.appdata</param.installpath.combo>
     <param.logo />
     <param.install.notes />
     <param.target.install.notes />
@@ -24,8 +24,8 @@
     <param.user.defined.mcr.options />
     <param.target.type>subtarget.standalone</param.target.type>
     <param.support.packages />
-    <param.web.mcr>false</param.web.mcr>
-    <param.package.mcr>true</param.package.mcr>
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
     <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
@@ -41,17 +41,12 @@
 	 
  Input Arguments 
 	 -?  print help on how to use the application 
-	 input arguments 
- Description 
- 	 This program takes in user input and calculates electricity consumption and production, its cost, irradiance, etc.</param.help.text>
+	 input arguments</param.help.text>
     <unset>
       <param.icon />
       <param.icons />
-      <param.version />
       <param.screenshot />
       <param.guid />
-      <param.installpath.string />
-      <param.installpath.combo />
       <param.logo />
       <param.install.notes />
       <param.target.install.notes />
@@ -63,6 +58,8 @@
       <param.user.defined.mcr.options />
       <param.target.type />
       <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
       <param.no.mcr />
       <param.web.mcr.name />
       <param.package.mcr.name />
