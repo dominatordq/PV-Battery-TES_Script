@@ -191,7 +191,8 @@ for j=1:8760
 eProdPV(j,i) = prodPV;
 eProdPVTot(k,i) = prodPVTot;
 Tpv(j,i) = tempPV;
-                 
+     
+%eventually will call either batteryCharge, tesCharge (not integrated yet), or both
 [sysUt, sysWa, batUse, currentCharge] = batteryCharge(eProdPV(j,i),eLoad(j,i),charge,chargeMin,etaI,etaStor,capStor(i)); %call batteryCharge  
 eSysUt(k,i) = eSysUt(k,i) + sysUt;      %add the sysUt output to the eSysUt array/matrix if there is a change
 eSysWa(k,i) = eSysWa(k,i) + sysWa;      %add the sysWa output to the eSysWa array/matrix if there is a change
@@ -200,6 +201,7 @@ charge = currentCharge;         %store charge output
 
 chargeHist(j,i) = charge;    %store charge in history variable
 
+%eventually will call either tesDischarge (not integrated yet), batteryDischarge or both
 [chargeDirNew, currentCharge, cycleMin, cycleMax, capStorOut] = batteryDischarge(chargeDir,charge,chargeP,chargeMin,cycleMin,cycleMax,capStor(i),capStorRated,deltaCcal); %call batteryDischarge
 chargeDir = chargeDirNew;   %update charge direction
 capStor(i) = capStorOut;    %update capacity storage array
