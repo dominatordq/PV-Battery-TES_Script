@@ -14,14 +14,14 @@
 %   TMY3 files must be named 1.csv ... 50.csv for each state (currently alphabetical)
 %   Corresponding load files must be named 1L.csv ... 50L.csv for each state
 
-%   Last updated 2019-06-03
+%   Last updated 2019-07-01
 
 clearvars
 clc
 
 filename = '';
 if (isempty(filename))
-    prompt = 'Enter the name of your input file (ex: Inputs.xlsx): ';   %this if statement prevents program from looping
+    prompt = 'Enter the name of your input file (e.g. Inputs.xlsx): ';   %this if statement prevents program from looping
 end
 
 filename = input(prompt,'s');               %save input into a variable
@@ -215,10 +215,58 @@ end
 
 [SCR, SSR, BUR, SCRtot, SSRtot, BURtot] = techAnalysis(eSysUt,eBatUse,eProdPVTot,eLoad,nomCapBat,nEc);  %call techAnalysis
 
+%write outputs of techAnalysis to excel file (each on a seperate sheet)
+outputFile = 'techanalysis.xlsx';
+xlswrite(outputFile, SCR, 'SCR', 'A1');
+xlswrite(outputFile, SSR, 'SSR', 'A1');
+xlswrite(outputFile, BUR, 'BUR', 'A1');
+xlswrite(outputFile, SCRtot, 'SCR Total', 'A1');
+xlswrite(outputFile, SSRtot, 'SSR Total', 'A1');
+xlswrite(outputFile, BURtot, 'BUR Total', 'A1');
+
 disp('Completed simulating PV/battery system for 30 years')
 toc
 
+filePath = pwd;
+objExcel = actxserver('Excel.Application');
+objExcel.Workbooks.Open(fullfile(filePath, outputFile));
+%if Sheet1 exists, try deleting it
+try
+    objExcel.ActiveWorkbook.Worksheets.Item('Sheet1').Delete;   %delete first sheet that is automatically generated using xlswrite
+catch
+    %do nothing
+end
+
+%save, close, and clean up
+objExcel.ActiveWorkbook.Save;
+objExcel.ActiveWorkbook.Close;
+objExcel.Quit;
+objExcel.delete;
+
 [LCOEsys, COEsys, LCCelecAvoid, LCOEgrid, LCOEcomp, LCOEpv, LCOEbat, Pbd] = econAnalysis(nEc,invest,downPay,ITC,m,tBar,d,mS,r,costIreplace,capPV,replaceIyr,costBatreplace,nomCapBat,costStorInstReplace,replaceBatYr,costPVTot,eSysUt,eProdPVTot,pElec); %call econAnalysis
+outputFile = 'economicanalysis.xlsx';
+xlswrite(outputFile, LCOEsys, 'LCOE System', 'A1');
+xlswrite(outputFile, COEsys, 'COE System', 'A1');
+xlswrite(outputFile, LCCelecAvoid, 'LC Avoided COE', 'A1');
+xlswrite(outputFile, LCOEgrid, 'LCOE Grid', 'A1');
+xlswrite(outputFile, LCOEcomp, 'LCOE Comparison', 'A1');
+xlswrite(outputFile, LCOEpv, 'LCOE PV', 'A1');
+xlswrite(outputFile, LCOEbat, 'LCOE Battery', 'A1');
+xlswrite(outputFile, Pbd, 'Bi-directional Sell-back Price', 'A1');
 
 disp('Completed financial analysis')
 toc
+
+objExcel = actxserver('Excel.Application');
+objExcel.Workbooks.Open(fullfile(filePath, outputFile));
+%if Sheet1 exists, try deleting it
+try
+    objExcel.ActiveWorkbook.Worksheets.Item('Sheet1').Delete;    %delete first sheet that is automatically generated using xlswrite
+catch
+    %do nothing
+end
+%save, close, and clean up.
+objExcel.ActiveWorkbook.Save;
+objExcel.ActiveWorkbook.Close;
+objExcel.Quit;
+objExcel.delete;
