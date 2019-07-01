@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="83495726" file="U:\NREL\PVTesBattery\PVBatterySystem.prj" location="U:\NREL\PVTesBattery" name="PVBatterySystem" preferred-package-location="U:\NREL\PVTesBattery\PVBatterySystem\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="926511012" file="U:\NREL\PVTesBattery\PVBatterySystem.prj" location="U:\NREL\PVTesBattery" name="PVBatterySystem" preferred-package-location="U:\NREL\PVTesBattery\PVBatterySystem\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>PVBatterySystem</param.appname>
     <param.icon />
     <param.icons />
@@ -8,7 +8,7 @@
     <param.email>dquintana@mymail.mines.edu</param.email>
     <param.company>NREL</param.company>
     <param.summary>This model simulates residential PV/Battery systems over 30 years and calculates electricity consumption, production, cost, etc.</param.summary>
-    <param.description>This program takes in user input and calculates electricity consumption and production, its cost, irradiance, etc.</param.description>
+    <param.description>This program takes in user input and calculates electricity consumption and production, cost, irradiance, etc.</param.description>
     <param.screenshot />
     <param.guid />
     <param.installpath.string>NREL\PVBatterySystem\</param.installpath.string>
@@ -74,7 +74,6 @@
     <fileset.resources>
       <file>${PROJECT_ROOT}\New code\batteryCharge.m</file>
       <file>${PROJECT_ROOT}\New code\elecPrices.csv</file>
-      <file>${PROJECT_ROOT}\New code\Inputs.xlsx</file>
       <file>${PROJECT_ROOT}\New code\Load Data</file>
       <file>${PROJECT_ROOT}\New code\PV_Battery_New.m</file>
       <file>${PROJECT_ROOT}\New code\TMY3 Data</file>
