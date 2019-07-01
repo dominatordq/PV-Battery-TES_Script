@@ -1,0 +1,8 @@
+Completed processing input files.
+Elapsed time is 18.410773 seconds.
+Completed calculating incident irradiance on tilted panels.
+Elapsed time is 18.827156 seconds.
+Completed simulating PV/battery system for 30 years
+Elapsed time is 22.660793 seconds.
+Completed financial analysis
+Elapsed time is 22.683867 seconds.

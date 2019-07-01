@@ -1,4 +1,3 @@
-------------Legend--------------
 W = watt
 kW = kilowatt
 kWh = kilowatt hour(s)
@@ -7,8 +6,6 @@ m^2 = meters squared
 deg = degrees
 C = Celsius 
 yr = year
---------------------------------
-
 
 nStates: number of states to run model for
 
