@@ -255,7 +255,6 @@ xlswrite(outputFile, LCOEpv, 'LCOE PV', 'A1');
 xlswrite(outputFile, LCOEbat, 'LCOE Battery', 'A1');
 xlswrite(outputFile, Pbd, 'Bi-directional Sell-back Price', 'A1');
 
-
 disp('Completed financial analysis')
 toc
 
