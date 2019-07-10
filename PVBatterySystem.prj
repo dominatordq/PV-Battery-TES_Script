@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="926511012" file="U:\NREL\PVTesBattery\PVBatterySystem.prj" location="U:\NREL\PVTesBattery" name="PVBatterySystem" preferred-package-location="U:\NREL\PVTesBattery\PVBatterySystem\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="3878185561" file="U:\NREL\PVTesBattery\PVBatterySystem.prj" location="U:\NREL\PVTesBattery" name="PVBatterySystem" preferred-package-location="U:\NREL\PVTesBattery\PVBatterySystem\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>PVBatterySystem</param.appname>
     <param.icon />
     <param.icons />
