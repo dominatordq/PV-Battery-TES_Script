@@ -217,6 +217,8 @@ end
 
 %write outputs of techAnalysis to excel file (each on a seperate sheet)
 outputFile = 'techanalysis.xlsx';
+[lastmsg, lastid] = lastwarn;
+warning('OFF', lastid);     %turns off warning message when writing to excel file
 xlswrite(outputFile, SCR, 'SCR', 'A1');
 xlswrite(outputFile, SSR, 'SSR', 'A1');
 xlswrite(outputFile, BUR, 'BUR', 'A1');
