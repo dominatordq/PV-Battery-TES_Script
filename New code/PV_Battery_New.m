@@ -215,28 +215,15 @@ end
 
 [SCR, SSR, BUR, SCRtot, SSRtot, BURtot] = techAnalysis(eSysUt,eBatUse,eProdPVTot,eLoad,nomCapBat,nEc);  %call techAnalysis
 
+warning('off', 'MATLAB:xlswrite:AddSheet'); %turns off warning message when writing to excel file  
 %write outputs of techAnalysis to excel file (each on a seperate sheet)
 outputFile = 'techanalysis.xlsx';
-[lastmsg, lastid] = lastwarn;
-warning('OFF', lastid);     %turns off warning message when writing to excel file
 xlswrite(outputFile, SCR, 'SCR', 'A1');
-[lastmsg, lastid] = lastwarn;
-warning('OFF', lastid);     %turns off warning message when writing to excel file
-xlswrite(outputFile, SSR, 'SSR', 'A1');
-[lastmsg, lastid] = lastwarn;
-warning('OFF', lastid);     %turns off warning message when writing to excel file
-xlswrite(outputFile, BUR, 'BUR', 'A1');
-[lastmsg, lastid] = lastwarn;
-warning('OFF', lastid);     %turns off warning message when writing to excel file
-xlswrite(outputFile, SCRtot, 'SCR Total', 'A1');
-[lastmsg, lastid] = lastwarn;
-warning('OFF', lastid);     %turns off warning message when writing to excel file
-xlswrite(outputFile, SSRtot, 'SSR Total', 'A1');
-[lastmsg, lastid] = lastwarn;
-warning('OFF', lastid);     %turns off warning message when writing to excel file
-xlswrite(outputFile, BURtot, 'BUR Total', 'A1');
-[lastmsg, lastid] = lastwarn;
-warning('OFF', lastid);     %turns off warning message when writing to excel file
+xlswrite(outputFile, SSR, 'SSR', 'A1'); 
+xlswrite(outputFile, BUR, 'BUR', 'A1');    
+xlswrite(outputFile, SCRtot, 'SCR Total', 'A1');  
+xlswrite(outputFile, SSRtot, 'SSR Total', 'A1');    
+xlswrite(outputFile, BURtot, 'BUR Total', 'A1');  
 
 disp('Completed simulating PV/battery system for 30 years')
 toc
@@ -267,6 +254,7 @@ xlswrite(outputFile, LCOEcomp, 'LCOE Comparison', 'A1');
 xlswrite(outputFile, LCOEpv, 'LCOE PV', 'A1');
 xlswrite(outputFile, LCOEbat, 'LCOE Battery', 'A1');
 xlswrite(outputFile, Pbd, 'Bi-directional Sell-back Price', 'A1');
+
 
 disp('Completed financial analysis')
 toc
