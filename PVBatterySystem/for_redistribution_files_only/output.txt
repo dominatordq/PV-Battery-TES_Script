@@ -1,78 +1,8 @@
 Completed processing input files.
-Elapsed time is 19.204354 seconds.
+Elapsed time is 19.642240 seconds.
 Completed calculating incident irradiance on tilted panels.
-Elapsed time is 19.687301 seconds.
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 220)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 221)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 222)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 223)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 224)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 225)
+Elapsed time is 20.069217 seconds.
 Completed simulating PV/battery system for 30 years
-Elapsed time is 26.810430 seconds.
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 248)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 249)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 250)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 251)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 252)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 253)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 254)
-Warning: Added specified worksheet.
-> In xlswrite>activate_sheet (line 298)
-  In xlswrite/ExecuteWrite (line 264)
-  In xlswrite (line 218)
-  In PV_Battery_New (line 255)
+Elapsed time is 26.562658 seconds.
 Completed financial analysis
-Elapsed time is 31.356161 seconds.
+Elapsed time is 31.086691 seconds.
