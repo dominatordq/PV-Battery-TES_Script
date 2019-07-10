@@ -220,11 +220,23 @@ outputFile = 'techanalysis.xlsx';
 [lastmsg, lastid] = lastwarn;
 warning('OFF', lastid);     %turns off warning message when writing to excel file
 xlswrite(outputFile, SCR, 'SCR', 'A1');
+[lastmsg, lastid] = lastwarn;
+warning('OFF', lastid);     %turns off warning message when writing to excel file
 xlswrite(outputFile, SSR, 'SSR', 'A1');
+[lastmsg, lastid] = lastwarn;
+warning('OFF', lastid);     %turns off warning message when writing to excel file
 xlswrite(outputFile, BUR, 'BUR', 'A1');
+[lastmsg, lastid] = lastwarn;
+warning('OFF', lastid);     %turns off warning message when writing to excel file
 xlswrite(outputFile, SCRtot, 'SCR Total', 'A1');
+[lastmsg, lastid] = lastwarn;
+warning('OFF', lastid);     %turns off warning message when writing to excel file
 xlswrite(outputFile, SSRtot, 'SSR Total', 'A1');
+[lastmsg, lastid] = lastwarn;
+warning('OFF', lastid);     %turns off warning message when writing to excel file
 xlswrite(outputFile, BURtot, 'BUR Total', 'A1');
+[lastmsg, lastid] = lastwarn;
+warning('OFF', lastid);     %turns off warning message when writing to excel file
 
 disp('Completed simulating PV/battery system for 30 years')
 toc
